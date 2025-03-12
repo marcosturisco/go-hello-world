@@ -8,7 +8,7 @@ WORKDIR /app
 COPY main.go .
 
 # Compila o código Go como um binário estático
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o app main.go
 
 # Estágio de execução: usa a imagem 'scratch' para a imagem final mínima
 FROM scratch
